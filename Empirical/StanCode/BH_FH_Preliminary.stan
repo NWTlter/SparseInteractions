@@ -4,7 +4,8 @@
 data{
   int<lower = 1> N; // Number of plots
   int<lower = 1> S; // Number of species
-  int Fecundity[N]; // Fecundity of the focal species in each plot
+  int Nt[N]; // initial pop size
+  int Fecundity[N]; // Final pop size
   int reserve[N];   // Indicator variable for the reserve each plot is located in
   matrix[N,S] SpMatrix; // Matrix of abundances for each species (including abundances of non-focal individuals of the focal species)
   vector[N] env;   // Environmental values for each plot
@@ -101,7 +102,7 @@ model{
     }
     interaction_effects[i] = sum(alpha_eij[i,] .* SpMatrix[i,]);
     
-    F_hat[i] = lambda_ei[i] / (1 + interaction_effects[i]);
+    F_hat[i] = Nt[i] * lambda_ei[i] / (1 + interaction_effects[i]);
   }
   Fecundity ~ poisson(F_hat);
 }
