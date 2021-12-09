@@ -344,6 +344,10 @@ for(i in c("moist_cool", "moist_warm", "dry_warm", "dry_cool")){
         
 }}
 
+write.csv(out, file = "Empirical/no_env_res.csv")
+out <- read.csv("Empirical/no_env_res.csv")
+
+
 out %>% 
         pivot_longer(-c(species, mod_type), values_to = "values", names_to = "names") %>% 
         separate(names, sep = "_", into = c("variable", "type", "type2")) %>% 
