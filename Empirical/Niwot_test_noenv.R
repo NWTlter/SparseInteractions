@@ -344,7 +344,7 @@ for(i in c("moist_cool", "moist_warm", "dry_warm", "dry_cool")){
         
 }}
 
-write.csv(out, file = "Empirical/no_env_res.csv")
+write.csv(out, file = "Empirical/no_env_res.csv", row.names = F)
 out <- read.csv("Empirical/no_env_res.csv")
 
 
